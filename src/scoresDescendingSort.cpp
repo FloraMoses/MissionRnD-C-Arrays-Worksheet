@@ -19,7 +19,37 @@ struct student {
 	char name[10];
 	int score;
 };
-
+int isSorted(struct student*);
+int isSame(struct student*);
 void * scoresDescendingSort(struct student *students, int len) {
-	return NULL;
+	if (len <= 0 || students == NULL)
+		return NULL;
+	if (len != 1) {
+		if (isSorted(students)) {
+			int temp = students[0].score;
+			students[0].score = students[2].score;
+			students[2].score = temp;
+		}
+	}
+	else if (!isSame) {
+		for (int i = 0; i < 3; i++)	{
+			for (int j = i + 1; j < 3; j++)	{
+				if (students[i].score < students[j].score) {
+					int temp = students[i].score;
+					students[i].score = students[j].score;
+					students[j].score = temp;
+				}
+			}
+		}
+	}
+}
+int isSorted(struct student *students) {
+	if (students[0].score < students[1].score && students[1].score < students[2].score)
+		return 1;
+	return 0;
+}
+int isSame(struct student *students) {
+	if (students[0].score == students[1].score && students[1].score == students[2].score)
+		return 1;
+	return 0;
 }
